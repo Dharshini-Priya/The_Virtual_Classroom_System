@@ -3,5 +3,5 @@ By
 S. Asmath Haseena  
 P. Dharshini Priya
 
-FRONT END BACK END:
-
+FRONT END and BACK END:
+HTML,CSS,Bootstrap,Django
