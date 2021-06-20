@@ -3,5 +3,5 @@ By
 S. Asmath Haseena  
 P. Dharshini Priya
 
-Technology used:
+FRONT END BACK END:
 HTML,CSS,BOOTSTRAP,Django
