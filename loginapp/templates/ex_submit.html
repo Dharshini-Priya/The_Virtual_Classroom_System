@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+     
+      a{
+        font-size: 30px;
+      }
+  </style>
+</head>
+<body style="background: rgb(189,63,251);
+background: radial-gradient(circle, rgba(189,63,251,1) 0%, rgba(70,252,149,0.44861694677871145) 100%);">
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+             
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tea_sub' %}" style="color:white;">Home</a>
+                  </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'ex_submit' %}" style="color:white;">View Submissions</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+<center>
+
+{% for i in data %}
+
+<div class="card text-dark bg-light mb-3" style="width: 400px;  border-radius: 25px;">
+  <div class="card-header">
+    <center><h5 class="card-title">Name {{ i.name}} </h5></center>
+  </div>
+   <div class="card-body">
+
+   
+    <p class="card-text">Roll Number: {{ i.roll }} 
+    <p class="card-text">Topic: {{ i.topic }} 
+      <p class="card-text">Time: {{ i.time }} 
+          <p class="card-text">Date: {{ i.date }} 
+            <p class="card-text"><a href="{{ i.document.url }}" class="btn btn-primary" style="text-decoration: none;">View Answer</a>
+              <form action="ex_grade">
+                <center>
+                      <button type="submit" class="btn btn-primary">Grade</button>
+                    </center>  
+                    </form>
+       
+        
+  </div>     
+</div>
+{% endfor %}
+</center>
+</body>
+</html>

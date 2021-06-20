@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      form
+      {
+          margin-left:500px;
+          margin-right: 500px;
+      }
+      
+      a{
+        font-size: 30px;
+      }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+<body style="background: rgb(189,63,251);
+background: radial-gradient(circle, rgba(189,63,251,1) 0%, rgba(70,252,149,0.44861694677871145) 100%);">
+
+<br><br>
+    <form action="stu_exam_answer" method="POST" enctype="multipart/form-data" style="background-color: white; padding:20px; border-radius: 25px;">
+        {% csrf_token %}
+        <br>
+        <div class="mb-3">
+         <label for="exampleInputPassword1" class="form-label">Name</label><br>
+         <input type="text" class="form-control" name="name">
+       </div>
+       
+       <div class="mb-3">
+         <label for="exampleInputPassword1" class="form-label">Roll number</label><br>
+         <input type="text" class="form-control" name="roll">
+       </div> 
+       <div class="mb-3">
+         <label for="exampleInputPassword1" class="form-label">Topic</label><br>
+         <input type="text" class="form-control" name="topic">
+       </div> 
+       <div class="form-group">
+         <label for="exampleFormControlFile1">File upload</label><br>
+         <input type="file" class="form-control-file" name="document">
+       </div><br>
+    <center> <button type="submit" class="btn btn-primary">Submit</button></center>
+   </form>
+   
+
+
+</body>
+</html>

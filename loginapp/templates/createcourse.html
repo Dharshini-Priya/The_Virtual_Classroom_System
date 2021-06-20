@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        form
+        {
+            margin-left:500px;
+            margin-right: 500px;
+        }
+        a{
+          font-size: 30px;
+        }
+    </style>
+</head>
+<body style="background: rgb(189,63,251);
+background: radial-gradient(circle, rgba(189,63,251,1) 0%, rgba(70,252,149,0.44861694677871145) 100%);">
+  
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+             
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'teacherhome' %}"  style="color:white;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'createcourse' %}" style="color:white;">Create course</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+<br><br>
+      <form action="createcourse" method="POST" style="background-color: white; padding:20px; border-radius: 25px;">
+        {% csrf_token %}
+        <div class="mb-3">
+         <label for="exampleInputPassword1" class="form-label">Teacher Name</label>
+         <input type="text" class="form-control" name="tname">
+       </div>
+       <div class="mb-3">
+         <label for="exampleInputPassword1" class="form-label">Qualification</label>
+         <input type="text" class="form-control" name="qualification">
+       </div> 
+       <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Course name</label>
+        <input type="text" class="form-control" name="coursename">
+      </div>
+      <center>
+     <button type="submit" class="btn btn-primary">Create course</button>
+    </center>
+    </form>
+   
+</body>
+</html>
