@@ -3,4 +3,5 @@ By
 S. Asmath Haseena  
 P. Dharshini Priya
 
-   Technology used  HTML, CSS, JavaScript, and Bootstrap as front end and Django, MySQL as backend
+   Technology used  HTML, CSS, JavaScript, and Bootstrap as front end
+   Django, MySQL as backend
