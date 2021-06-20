@@ -3,5 +3,5 @@ By
 S. Asmath Haseena  
 P. Dharshini Priya
 
-Technology:
+Technology Used:
 HTML,CSS,Bootstrap,Django
