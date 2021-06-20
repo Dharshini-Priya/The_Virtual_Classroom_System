@@ -4,4 +4,4 @@ S. Asmath Haseena
 P. Dharshini Priya
 
 FRONT END BACK END:
-HTML,CSS,BOOTSTRAP,Django
+
