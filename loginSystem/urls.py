@@ -50,5 +50,9 @@ urlpatterns = [
     path('stu_grade',views.stu_grade,name='stu_grade'),
     path('stu_ex_grade',views.stu_ex_grade,name='stu_ex_grade'),
     path('stu_ass_grade',views.stu_ass_grade,name='stu_ass_grade'),
+    path('stu_resource',views.stu_resource,name='stu_resource'),
+    path('stu_article',views.stu_article,name='stu_article'),
+    path('stu_book',views.stu_book,name='stu_book'),
+    path('book',views.book,name='book'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
