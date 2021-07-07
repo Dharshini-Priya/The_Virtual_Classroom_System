@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      a{
+        font-size: 30px;
+      }
+     
+     
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'stu_resource' %}" style="color:white;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'stu_book' %}" style="color:white;">Book Finder</a>
+              </li>
+             
+          
+            
+            </ul>
+          </div>
+        </div>
+      </nav>
+     
+
+      <div class="container">
+        <div id="title" class="center">
+          <h1 id="header" class="text-center mt-5">Book Finder</h1>
+          <div class="row">
+            <div id="input" class="input-group mx-auto col-lg-6 col-md-8 col-sm-12">
+              <input id="search-box" type="text" class="form-control" placeholder="Search Books!...">
+              <button id="search" class="btn btn-primary" onclick="">Search</button>
+          </div>
+          </div>
+        </div>
+        <div class="book-list" >
+        
+          <div id="list-output" class="">
+            <div class="row">
+           
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+     
+      <script>
+
+        $(document).ready(function() {
+            var item, tile, author, publisher, bookLink, bookImg;
+            var outputList = document.getElementById("list-output");
+            var bookUrl = "https://www.googleapis.com/books/v1/volumes?q=";
+            var apiKey = "key=AIzaSyDtXC7kb6a7xKJdm_Le6_BYoY5biz6s8Lw";
+            var placeHldr = '<img src="https://via.placeholder.com/150">';
+            var searchData;
+          
+            $("#search").click(function() {
+              outputList.innerHTML = ""; 
+              document.body.style.backgroundImage = "url('')";
+               searchData = $("#search-box").val();
+                if(searchData === "" || searchData === null) {
+                 displayError();
+               }
+              else {
+                  $.ajax({
+                    url: bookUrl + searchData,
+                    dataType: "json",
+                    success: function(response) {
+                      console.log(response)
+                      if (response.totalItems === 0) {
+                        alert("no result!.. try again")
+                      }
+                      else {
+                        $("#title").animate({'margin-top': '5px'}, 1000); 
+                        $(".book-list").css("visibility", "visible");
+                        displayResults(response);
+                      }
+                    },
+                    error: function () {
+                      alert("Something went wrong.. <br>"+"Try again!");
+                    }
+                  });
+                }
+                $("#search-box").val("");
+             });
+          
+            
+             function displayResults(response) {
+                for (var i = 0; i < response.items.length; i+=2) {
+                  item = response.items[i];
+                  title1 = item.volumeInfo.title;
+                  author1 = item.volumeInfo.authors;
+                  publisher1 = item.volumeInfo.publisher;
+                  bookLink1 = item.volumeInfo.previewLink;
+                  bookIsbn = item.volumeInfo.industryIdentifiers[1].identifier
+                  bookImg1 = (item.volumeInfo.imageLinks) ? item.volumeInfo.imageLinks.thumbnail : placeHldr ;
+          
+                  item2 = response.items[i+1];
+                  title2 = item2.volumeInfo.title;
+                  author2 = item2.volumeInfo.authors;
+                  publisher2 = item2.volumeInfo.publisher;
+                  bookLink2 = item2.volumeInfo.previewLink;
+                  bookIsbn2 = item2.volumeInfo.industryIdentifiers[1].identifier
+                  bookImg2 = (item2.volumeInfo.imageLinks) ? item2.volumeInfo.imageLinks.thumbnail : placeHldr ;
+          
+                  outputList.innerHTML += '<div class="row mt-4">' +
+                                          formatOutput(bookImg1, title1, author1, publisher1, bookLink1, bookIsbn) +
+                                          formatOutput(bookImg2, title2, author2, publisher2, bookLink2, bookIsbn2) +
+                                          '</div>';
+          
+                  console.log(outputList);
+                }
+             }
+          
+             function formatOutput(bookImg, title, author, publisher, bookLink, bookIsbn) {
+               var viewUrl = 'book.html?isbn='+bookIsbn; 
+               var htmlCard = `<div class="col-lg-6">
+                 <div class="card" style="">
+                   <div class="row no-gutters">
+                     <div class="col-md-4">
+                       <img src="${bookImg}" class="card-img" alt="...">
+                     </div>
+                     <div class="col-md-8">
+                       <div class="card-body">
+                         <h5 class="card-title">${title}</h5>
+                         <p class="card-text">Author: ${author}</p>
+                         <p class="card-text">Publisher: ${publisher}</p>
+                    </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>`
+               return htmlCard;
+             }
+          
+             function displayError() {
+               alert("search term can not be empty!")
+             }
+          
+          });
+      </script>
+
+</body>
+
+
+</html>
