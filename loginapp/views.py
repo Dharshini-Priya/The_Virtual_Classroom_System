@@ -343,4 +343,15 @@ def stu_ass_grade(req):
 def stu_ex_grade(req):
     key=Ex_Grade.objects.all()
     return render(req,'stu_ex_grade.html',{'data':key})
+def stu_resource(req):
+    return render(req,'stu_resource.html')
+
+def stu_article(req):
+    return render(req,'stu_article.html')
+
+def stu_book(req):
+    return render(req,'stu_book.html')
+
+def book(req):
+    return render(req,'book.html')
     
